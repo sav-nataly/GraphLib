@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="GraphAlgorithm">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../GraphAlgorithm/out/artifacts/GraphAlgorithm_jar/GraphAlgorithm.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
