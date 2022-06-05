@@ -2,46 +2,13 @@ package ru.vsu.savina.graphalgorithms.algorithms.implementation;
 
 import ru.vsu.savina.graphalgorithms.algorithms.ISpanningTreeAlgorithm;
 import ru.vsu.savina.graphalgorithms.model.*;
+import ru.vsu.savina.graphalgorithms.model.implementation.UndirectedEdge;
+import ru.vsu.savina.graphalgorithms.model.implementation.UndirectedGraph;
+import ru.vsu.savina.graphalgorithms.model.implementation.UndirectedVertex;
 
 import java.util.*;
 
 public class PrimAlgorithm implements ISpanningTreeAlgorithm {
-    private static double getWeight(IEdge edge) {
-        if (edge.getMetadata().containsKey("weight")) {
-            return (double) edge.getMetadata().get("weight");
-        }
-        return 0.0;
-    }
-
-    private static UndirectedGraph createGraph(IGraph graph, Map<IVertex, IVertex> edges) {
-        UndirectedGraph graph1 = new UndirectedGraph();
-
-        for (Map.Entry<IVertex, IVertex> entry : edges.entrySet()) {
-            if (entry.getValue() != null) {
-
-                UndirectedVertex v = new UndirectedVertex(entry.getKey().getUid());
-                UndirectedVertex v2 = new UndirectedVertex(entry.getValue().getUid());
-
-                v.setMetadata(entry.getKey().getMetadata());
-                v2.setMetadata(entry.getValue().getMetadata());
-
-                graph1.addVertex(v);
-                graph1.addVertex(v2);
-
-                IEdge e = new UndirectedEdge(new HashMap<>() {
-                    {
-                        put(VertexType.SOURCE, (UndirectedVertex) graph1.getVertex(v.getUid()));
-                        put(VertexType.TARGET, (UndirectedVertex) graph1.getVertex(v2.getUid()));
-                    }
-                }, graph.getEdge(entry.getKey(), entry.getValue()).getMetadata());
-                graph1.addEdge(e);
-            }
-        }
-
-        return graph1;
-
-    }
-
     @Override
     public UndirectedGraph execute(UndirectedGraph graph, IVertex root) {
         double INF = Integer.MAX_VALUE;
@@ -74,7 +41,7 @@ public class PrimAlgorithm implements ISpanningTreeAlgorithm {
             UndirectedVertex v = (UndirectedVertex) vertices.stream().min((v1, v2) -> (int) (key.get(v1) - key.get(v2))).get();
             vertices.remove(v);
 
-            for (Map.Entry<UndirectedEdge, EdgeType> entry : v.getEdgeMap().entrySet()) {
+            for (Map.Entry<UndirectedEdge, EdgeType>  entry : v.getEdgeMap().entrySet()) {
                 UndirectedVertex u = (UndirectedVertex) entry.getKey().getOpposite(v);
 
                 if (vertices.contains(u) && key.get(u) > getWeight(entry.getKey())) {
@@ -90,6 +57,7 @@ public class PrimAlgorithm implements ISpanningTreeAlgorithm {
                 edges.put(v, parent.get(v));
 
         }
+
 
 
         minWeight.replace(graph.getVertexList().get(0), 0.0);
@@ -121,5 +89,41 @@ public class PrimAlgorithm implements ISpanningTreeAlgorithm {
         }
 
         return createGraph(graph, edges);
+    }
+
+    private static double getWeight(IEdge edge) {
+        if (edge.getMetadata().containsKey("weight")) {
+            return  (double) edge.getMetadata().get("weight");
+        }
+        return 0.0;
+    }
+
+    private static UndirectedGraph createGraph(IGraph graph, Map<IVertex, IVertex> edges) {
+        UndirectedGraph graph1 = new UndirectedGraph();
+
+        for (Map.Entry<IVertex, IVertex> entry : edges.entrySet()) {
+            if (entry.getValue() != null) {
+
+                UndirectedVertex v = new UndirectedVertex(entry.getKey().getUid());
+                UndirectedVertex v2 = new UndirectedVertex(entry.getValue().getUid());
+
+                v.setMetadata(entry.getKey().getMetadata());
+                v2.setMetadata(entry.getValue().getMetadata());
+
+                graph1.addVertex(v);
+                graph1.addVertex(v2);
+
+                IEdge e = new UndirectedEdge(new HashMap<>() {
+                    {
+                        put(VertexType.SOURCE, (UndirectedVertex) graph1.getVertex(v.getUid()));
+                        put(VertexType.TARGET, (UndirectedVertex) graph1.getVertex(v2.getUid()));
+                    }
+                }, graph.getEdge(entry.getKey(), entry.getValue()).getMetadata());
+                graph1.addEdge(e);
+            }
+        }
+
+        return graph1;
+
     }
 }

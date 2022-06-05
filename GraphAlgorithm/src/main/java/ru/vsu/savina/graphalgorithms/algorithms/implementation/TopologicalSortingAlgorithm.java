@@ -1,7 +1,11 @@
 package ru.vsu.savina.graphalgorithms.algorithms.implementation;
 
 import ru.vsu.savina.graphalgorithms.algorithms.IVertexSortingAlgorithm;
-import ru.vsu.savina.graphalgorithms.model.*;
+import ru.vsu.savina.graphalgorithms.model.EdgeType;
+import ru.vsu.savina.graphalgorithms.model.IEdge;
+import ru.vsu.savina.graphalgorithms.model.IGraph;
+import ru.vsu.savina.graphalgorithms.model.IVertex;
+import ru.vsu.savina.graphalgorithms.model.implementation.DirectedGraph;
 
 import java.util.*;
 

@@ -2,7 +2,9 @@ package ru.vsu.savina.graphvisualization.ui;
 
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class VertexShape extends Region {
@@ -10,7 +12,16 @@ public class VertexShape extends Region {
 
     public VertexShape(Map<String, Object> metadata, Circle circle) {
         this.metadata = metadata;
+
+
+        if (metadata.containsKey("name")) {
+            Text text = new Text();
+            text.setText((String) metadata.get("name"));
+            text.relocate(5 , -35);
+            this.getChildren().add(text);
+        }
         this.getChildren().add(circle);
+
         circle.setDisable(true);
     }
 

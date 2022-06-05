@@ -7,10 +7,10 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Shape;
 import ru.vsu.savina.graphvisualization.graphics.Point;
-import ru.vsu.savina.graphvisualization.wrapper.DirectedEdgeWrapper;
 import ru.vsu.savina.graphvisualization.wrapper.IEdgeWrapper;
 import ru.vsu.savina.graphvisualization.wrapper.IGraphWrapper;
 import ru.vsu.savina.graphvisualization.wrapper.IVertexWrapper;
+import ru.vsu.savina.graphvisualization.wrapper.implementation.DirectedEdgeWrapper;
 
 import java.util.Map;
 
@@ -29,8 +29,10 @@ public class GraphDrawUtil {
 
             colorShape(v.getVertex().getMetadata(), circle);
 
+
             VertexShape v1 = new VertexShape(v.getVertex().getMetadata(), circle);
             v1.relocate(v.getX(), v.getY());
+
             pane.getChildren().add(v1);
         }
     }

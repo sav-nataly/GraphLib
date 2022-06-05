@@ -1,10 +1,10 @@
 package ru.vsu.savina.graphalgorithms.algorithms.implementation;
 
 import ru.vsu.savina.graphalgorithms.algorithms.IShortestPathAlgorithm;
-import ru.vsu.savina.graphalgorithms.model.DirectedGraph;
 import ru.vsu.savina.graphalgorithms.model.IEdge;
 import ru.vsu.savina.graphalgorithms.model.IGraph;
 import ru.vsu.savina.graphalgorithms.model.IVertex;
+import ru.vsu.savina.graphalgorithms.model.implementation.DirectedGraph;
 
 import java.util.ArrayList;
 import java.util.List;

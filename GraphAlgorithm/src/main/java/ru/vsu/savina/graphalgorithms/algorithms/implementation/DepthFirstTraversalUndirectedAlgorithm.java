@@ -1,7 +1,11 @@
 package ru.vsu.savina.graphalgorithms.algorithms.implementation;
 
 import ru.vsu.savina.graphalgorithms.algorithms.IGraphTraversalAlgorithm;
-import ru.vsu.savina.graphalgorithms.model.*;
+import ru.vsu.savina.graphalgorithms.model.EdgeType;
+import ru.vsu.savina.graphalgorithms.model.IGraph;
+import ru.vsu.savina.graphalgorithms.model.IVertex;
+import ru.vsu.savina.graphalgorithms.model.implementation.UndirectedEdge;
+import ru.vsu.savina.graphalgorithms.model.implementation.UndirectedVertex;
 
 import java.util.*;
 

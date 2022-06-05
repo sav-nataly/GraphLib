@@ -1,17 +1,16 @@
 package ru.vsu.savina.graphvisualization.application;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import ru.vsu.savina.graphalgorithms.model.*;
-import ru.vsu.savina.graphvisualization.exception.FileReaderException;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+
+import org.json.*;
+import ru.vsu.savina.graphalgorithms.model.VertexType;
+import ru.vsu.savina.graphalgorithms.model.implementation.*;
+import ru.vsu.savina.graphvisualization.exception.FileReaderException;
+
 
 public class JSONGraphReader {
 
@@ -25,7 +24,7 @@ public class JSONGraphReader {
         return createDirectedGraph(str);
     }
 
-    public static String readFile(File file) {
+    private static String readFile(File file) {
         if (!file.getName().substring(file.getName().lastIndexOf(".")).equals(".json")) {
             throw new FileReaderException("Wrong file extension");
         }

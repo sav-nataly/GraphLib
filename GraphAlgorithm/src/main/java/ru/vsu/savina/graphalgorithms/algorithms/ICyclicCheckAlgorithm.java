@@ -3,5 +3,5 @@ package ru.vsu.savina.graphalgorithms.algorithms;
 import ru.vsu.savina.graphalgorithms.model.IGraph;
 
 public interface ICyclicCheckAlgorithm {
-    public boolean execute(IGraph graph);
+    boolean execute(IGraph graph);
 }
